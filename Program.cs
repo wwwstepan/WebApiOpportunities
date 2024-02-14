@@ -1,8 +1,11 @@
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using WebApiOpportunities.GRpcServices;
 using WebApiOpportunities.Middlewares;
 
 var builder = WebApplication.CreateSlimBuilder(args);
+
+builder.Services.AddGrpc();
 
 builder.Services.AddControllers();
 
@@ -31,6 +34,8 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+
+app.MapGrpcService<CalculateProcessingService>();
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 
