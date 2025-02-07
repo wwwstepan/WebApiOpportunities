@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "WebApiOpportunities";
+
+package calculateprocessing;
+
+service CalculateProcessing {
+  rpc Calculate (CalculateProcessingRequest) returns (CalculateProcessingReply);
+  rpc Ping (Empty) returns (StringMessage);
+}
+
+message Empty {
+}
+
+message StringMessage {
+  string message = 1;
+}
+
+message CalculateProcessingRequest {
+  int32 argument1 = 1;
+  int32 argument2 = 2;
+  string operation = 3;
+}
+
+message CalculateProcessingReply {
+  string message = 1;
+  int32 result = 2;
+}
